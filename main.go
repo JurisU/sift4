@@ -4,6 +4,8 @@ import (
 	"strings"
 )
 
+// Models
+
 type Sift4 struct {
 	maxDistance                int
 	tokenizer                  func(string) []string
@@ -13,6 +15,8 @@ type Sift4 struct {
 	transpositionCostEvaluator func(string, string) int
 	transpositionsEvaluator    func(int, int) int
 }
+
+// Initialization
 
 func New() *Sift4 {
 	return &Sift4{
@@ -25,6 +29,8 @@ func New() *Sift4 {
 		transpositionsEvaluator:    defaultTranspositionsEvaluator,
 	}
 }
+
+// Defaults
 
 func defaultTokenizer(s string) []string {
 	return strings.Split(s, "")
