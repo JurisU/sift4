@@ -18,6 +18,12 @@ type Sift4 struct {
 	transpositionsEvaluator    func(float64, float64) float64
 }
 
+type offset struct {
+	c1    int
+	c2    int
+	trans bool
+}
+
 // Initialization
 
 func New() *Sift4 {
@@ -142,11 +148,7 @@ func (s *Sift4) Distance(s1, s2 string) float64 {
 	local_cs := 0.0 // local common substring
 	trans := 0.0    // number of transpositions
 
-	offset_arr := []struct {
-		c1    int
-		c2    int
-		trans bool
-	}{}
+	offset_arr := []offset{}
 
 	for (c1 < l1) && (c2 < l2) {
 		if s.tokenMatcher(t1[c1], t2[c2]) {
@@ -175,11 +177,7 @@ func (s *Sift4) Distance(s1, s2 string) float64 {
 					}
 				}
 			}
-			offset_arr = append(offset_arr, struct {
-				c1    int
-				c2    int
-				trans bool
-			}{c1, c2, is_trans})
+			offset_arr = append(offset_arr, offset{c1, c2, is_trans})
 		} else {
 			lcss += s.localLengthEvaluator(local_cs)
 			local_cs = 0
