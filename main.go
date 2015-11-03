@@ -28,7 +28,7 @@ type offset struct {
 
 func New() *Sift4 {
 	return &Sift4{
-		maxOffset:                  0,
+		maxOffset:                  5,
 		maxDistance:                0,
 		tokenizer:                  defaultTokenizer,
 		tokenMatcher:               defaultTokenMatcher,
